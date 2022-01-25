@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>도형 만들기</title>
+		<style>
+			* {
+				margin: 20px;
+			}
+
+			/* 타원 만들기  */
+			.circle {
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+				background-color: greenyellow;
+				display: inline-block;
+			}
+
+			.ellipse {
+				width: 200px;
+				height: 300px;
+				border-radius: 50%;
+				background-color: aqua;
+				display: inline-block;
+			}
+
+			/* border-radius는 사실 단축속성임! */
+			/* 가로의 반지름 / 세로의 반지름 */
+			.ellipse2 {
+				width: 200px;
+				height: 300px;
+				border-radius: 50% /100% 100% 0 0;
+				background-color: aqua;
+				display: inline-block;
+			}
+
+			.ellipse3 {
+				width: 200px;
+				height: 300px;
+				border-radius: 100% 0 0 100%/50%;
+				background-color: aqua;
+				display: inline-block;
+			}
+
+			.ellipse4 {
+				width: 200px;
+				height: 300px;
+				border-radius: 100% 0 0 0;
+				background-color: aqua;
+				display: inline-block;
+			}
+
+			/* 평행사변형 모양 버튼 만들기 */
+			.parallelogram {
+				transform: skewX(-45deg);
+				background-color: darkorchid;
+				display: inline-block;
+				width: 200px;
+				height: 80px;
+				text-decoration: none;
+				color: pink;
+				font-size: 30px;
+				text-align: center;
+			}
+
+			.parallelogram > div {
+				transform: skewX(45deg);
+			}
+
+			.parallelogram2 {
+				width: 100px;
+				height: 80px;
+				position: relative;
+				background-color: darkorchid;
+				display: inline-block;
+				color: pink;
+				font-size: 30px;
+				text-align: center;
+				border: none;
+				margin: 40px;
+			}
+
+			.parallelogram2::before {
+				width: 200px;
+				height: 80px;
+				content: "";
+				position: absolute;
+				top: 0;
+				left: -40px;
+				right: 0;
+				bottom: 0;
+				z-index: -1;
+				background-color: darkorchid;
+				transform: skew(-45deg);
+			}
+
+			/* 마름모꼴 이미지 */
+			.picture {
+				display: inline-block;
+				width: 200px;
+				height: 200px;
+				transform: rotate(45deg);
+				overflow: hidden;
+			}
+
+			.picture > img {
+				max-width: 100%;
+				transform: rotate(-45deg) scale(1.42) translateY(-20px);
+			}
+
+			.picture2 {
+				display: inline-block;
+				width: 300px;
+				height: 300px;
+				clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+				transition: 1s clip-path;
+				position: relative;
+			}
+
+			.picture2:hover {
+				clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="circle"></div>
+			<div class="ellipse"></div>
+			<div class="ellipse2"></div>
+			<div class="ellipse3"></div>
+			<div class="ellipse4"></div>
+		</div>
+		<div class="container">
+			<a href="" class="parallelogram">
+				<div>안녕!</div>
+			</a>
+
+			<button class="parallelogram2">안녕!</button>
+		</div>
+		<div class="container">
+			<div class="picture">
+				<img src="./images/b.png" alt="" />
+			</div>
+
+			<img src="./images/a.png" alt="" class="picture2" />
+		</div>
+	</body>
+</html>
