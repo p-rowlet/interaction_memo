@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+			}
+
+			.card {
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+            .card span{
+                position: absolute;
+                top : 0;
+                width: 250px;
+                height: 250px;
+                border-radius: 50%;
+                transform-origin: 125px 0;
+                transform: rotate(calc(60deg * var(--i)));
+                filter : blur(70px);
+                opacity: 0.75;
+            }
+
+            .card span:nth-child(1){
+                background: #4d01fe;
+            }
+            .card span:nth-child(2){
+                background: #c03682;
+            }
+            .card span:nth-child(3){
+                background: #00ff40;
+            }
+            .card span:nth-child(4){
+                background: #005cc4;
+            }
+            .card span:nth-child(5){
+                background: #49c6e6;
+            }
+            .card span:nth-child(6){
+                background: #eb6d24;
+            }
+
+            .card .glass{
+                position: absolute;
+                width: 450px;
+                height: 300px;
+                background: rgba(255,255,255,0.5);
+                border-radius: 20px;
+                border : 1px solid #fff;
+                overflow: hidden;
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-end;
+            }
+
+            .card .glass::before{
+                content : '';
+                position: absolute;
+                top: 0;
+                left: -35%;
+                width: 100%;
+                height: 100%;
+                background: rgba(255,255,255,0.2);
+                pointer-events: none;
+                transform: skewX(345deg);
+            }
+
+            .card .glass h2{
+                padding: 15px;
+                width: 100%;
+                background: rgba(255,255,255,0.2);
+                color : #333;
+                text-align: end;
+            }
+
+            .card .glass h2 i{
+                font-size: 0.75em;
+                font-style: normal;
+            }
+		</style>
+	</head>
+	<body>
+		<div class="card">
+            <!-- 각각 영역마다 변수설정이 가능하넹 'ㅁ' -->
+			<span style="--i:0"></span><span style="--i:1"></span>
+            <span style="--i:2"></span><span style="--i:3"></span>
+            <span style="--i:4"></span><span style="--i:5"></span>
+            <div class="glass">
+                <h2>안녕!<br>
+                    <i>오늘도 행복하자</i>
+                </h2>
+                
+            </div>
+		</div>
+	</body>
+</html>
