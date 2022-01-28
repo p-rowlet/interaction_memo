@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .liquid{
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: cadetblue;
+        }
+
+        .liquid h2{
+            position: absolute;
+            font-size: 26vw;
+        }
+
+        .liquid h2:nth-child(1){
+            color: white;
+            /* 여러 개를 쓰니 그림자도 여러 개!! */
+            text-shadow: -2px 2px 0px cadetblue, 
+            -4px 4px 0px cadetblue,
+            -6px 6px 0px cadetblue,
+            -8px 8px 0px cadetblue,
+            -18px 18px 20px rgba(0, 0, 0, 0.5),
+            -18px 18px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .liquid h2:nth-child(2){
+            color :rgb(60, 106, 206);
+            opacity: 0.5;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        .liquid h2:nth-child(3){
+            color :rgb(60, 106, 206);
+            opacity: 0.5;
+            animation: wave 7s ease-in-out infinite;
+        }
+
+        .liquid h2:nth-child(4){
+            color :rgb(60, 106, 206);
+            opacity: 0.4;
+            animation: wave 5s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100%{
+                /* clip-path generator 사용! */
+                clip-path: polygon(0 53%, 16% 51%, 36% 56%, 56% 65%, 69% 67%, 88% 64%, 100% 58%, 100% 99%, 0% 100%);
+            }
+            50%{
+                clip-path: polygon(0 61%, 16% 71%, 30% 73%, 56% 65%, 71% 58%, 84% 54%, 100% 51%, 100% 99%, 0% 100%);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="liquid">
+        <h2>안녕!</h2>
+        <h2>안녕!</h2>
+        <h2>안녕!</h2>
+        <h2>안녕!</h2>
+    </div>
+</body>
+</html>
