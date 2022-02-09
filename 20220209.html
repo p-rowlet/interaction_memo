@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #333333;
+        }
+
+        .container{
+            display: inline-flex;
+        }
+
+        .container .static-txt{
+            color: white;
+            font-size: 60px;
+            line-height: 85px;
+            height: 85px;
+        }
+
+        .container .dynamic-txts{
+            margin-left: 15px;
+            line-height: 85px;
+            height: 85px;
+            overflow: hidden;
+        }
+
+        .dynamic-txts li{
+            color: palevioletred;
+            list-style: none;
+            font-size: 60px;
+            position: relative;
+            top: 0;
+            animation: slide 6s steps(4) infinite;
+        }
+
+        @keyframes slide{
+            100%{
+                top: -340px;
+            }
+        }
+
+        .dynamic-txts li span{
+            position: relative;
+        }
+
+        .dynamic-txts li span::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #333;
+            border-left: 2px solid paleturquoise;
+            animation: typing 1.5s steps(4) infinite;
+        }
+
+        @keyframes typing{
+            0%{
+                left: 0;
+            }
+
+            100%{
+                left: 110%;
+                margin: 0 -35px 0 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="static-txt">
+            안뇽 !
+        </div>
+        <ul class="dynamic-txts">
+            <li><span>심심해</span></li>
+            <li><span>졸립따</span></li>
+            <li><span>지루해</span></li>
+        </ul>
+    </div>
+</body>
+</html>
