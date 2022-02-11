@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: black;
+				flex-direction: column;
+			}
+
+			.loader {
+				display: flex;
+			}
+
+			.loader span {
+				width: 20px;
+				height: 20px;
+
+				background: #999;
+				margin: 0 10px;
+				border-radius: 3px;
+				animation: animate 4s linear infinite;
+                animation-delay:  calc(0.5s * var(--i));
+			}
+
+			@keyframes animate {
+				0% {
+					background: #fff;
+					filter: blur(1px);
+					box-shadow: 0 0 10px #00ff15, 0 0 20px #00ff15,
+						0 0 40px #00ff15, 0 0 80px #00ff15, 0 0 120px #00ff15,
+						0 0 200px #00ff15, 0 0 300px #00ff15, 0 0 400px #00ff15;
+				}
+
+                25%, 75%{
+                    background: #111;
+					filter: blur(0px);
+                    box-shadow: none;
+                }
+                100% {
+					background: #fff;
+					filter: blur(1px);
+					box-shadow: 0 0 10px #00ff15, 0 0 20px #00ff15,
+						0 0 40px #00ff15, 0 0 80px #00ff15, 0 0 120px #00ff15,
+						0 0 200px #00ff15, 0 0 300px #00ff15, 0 0 400px #00ff15;
+				}
+			}
+
+			.text {
+				margin-top: 10px;
+                color : #1ab424;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="loader">
+			<span style="--i: 1"></span><span style="--i: 2"></span><span style="--i: 3"></span><span style="--i: 4"></span><span style="--i: 5"></span
+			><span style="--i: 6"></span><span style="--i: 7"></span>
+		</div>
+		<div class="text">loading</div>
+	</body>
+</html>
