@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .image-slider{
+            position: relative;
+            display: inline-block;
+        }
+
+        .image-slider > div{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            overflow: hidden;
+            /* overflow가 visible 속성만 아니라면, 리사이즈 옵션은 css로도 발동 가능 */
+            /* resize: horizontal; */
+        }
+
+        /* .image-slider > div::before{
+            content : '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            padding: 5px;
+            background: linear-gradient(-45deg, white 50%, transparent 0);
+            background-clip: content-box;
+            /* 조절용이라는 의미를 주기 위한 커서 */
+            /* cursor: ew-resize;
+        }  */
+
+        .image-slider img{
+            display: block;
+            /* 핸들러 잡기에 실패해도 이미지가 선택되지 못하게 설정 */
+            user-select: none;
+        }
+
+        .image-slider input{
+            position: absolute;
+            left: 0;
+            bottom: 10px;
+            width: 50%;
+            transform: scale(2);
+            transform-origin: left bottom;
+            margin: 0;
+            filter : contrast(.5);
+            mix-blend-mode: luminosity;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-slider">
+        <img src="./images/aing.png" alt="aing">
+        <img src="./images/ning.png" alt="ning">
+    </div>
+
+    <script>
+        const slider = document.querySelectorAll('.image-slider');
+        slider.forEach((slider)=>{
+            const div = document.createElement('div');
+            const img = slider.querySelectorAll('img');
+            slider.insertBefore(div, img[1]);
+            div.appendChild(img[0]);
+            const range = document.createElement('input');
+            range.type = 'range';
+            range.addEventListener('input', (e)=>{
+                div.style.width = e.currentTarget.value + '%';
+            })
+            slider.appendChild(range);
+        });
+
+    </script>
+</body>
+</html>
