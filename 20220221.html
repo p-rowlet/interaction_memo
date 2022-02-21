@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+			integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				background-color: blueviolet;
+			}
+
+			.drag-area {
+				border: 2px dashed #fff;
+				height: 400px;
+				width: 700px;
+				border-radius: 5px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				text-align: center;
+			}
+
+			.drag-area.active {
+				border: 2px solid #fff;
+			}
+
+			.drag-area .icon {
+				font-size: 100px;
+				color: #fff;
+			}
+
+			.drag-area header {
+				font-size: 30px;
+				font-weight: 500;
+				color: #fff;
+			}
+
+			.drag-area button {
+				padding: 10px 25px;
+				font-size: 20px;
+				font-weight: 500;
+				border: none;
+				outline: none;
+				background: #fff;
+				color: blueviolet;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+
+			.drag-area img {
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="drag-area">
+			<div class="icon">
+				<i class="fas fa-cloud-upload-alt"></i>
+				<header>파일을 드래그해주세욤!</header>
+				<button>파일 찾기</button>
+				<input type="file" name="" id="" hidden />
+			</div>
+		</div>
+		<script>
+			const dropArea = document.querySelector(".drag-area");
+			const dragText = dropArea.querySelector("header");
+			const button = dropArea.querySelector("button");
+			const input = dropArea.querySelector("input");
+
+			button.onclick = () => {
+				input.click();
+			};
+
+			input.addEventListener("change", function () {
+				file = this.files[0];
+                showFile();
+                dropArea.classList.add("active");
+			});
+
+			let file;
+
+			dropArea.addEventListener("dragover", (e) => {
+				e.preventDefault();
+				dropArea.classList.add("active");
+				dragText.textContent = "파일을 넣어주세염!";
+			});
+
+			dropArea.addEventListener("dragleave", () => {
+				dropArea.classList.remove("active");
+				dragText.textContent = "파일을 드래그해주세욤!";
+			});
+
+			dropArea.addEventListener("drop", (e) => {
+				e.preventDefault();
+				file = e.dataTransfer.files[0];
+                showFile();
+			});
+
+			function showFile() {
+				let fileType = file.type;
+
+				let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+				if (validExtensions.includes(fileType)) {
+					let fileReader = new FileReader();
+					fileReader.onload = () => {
+						let fileURL = fileReader.result;
+						let imgTag = `<img src = "${fileURL}" alt="">`;
+						dropArea.innerHTML = imgTag;
+					};
+
+					fileReader.readAsDataURL(file);
+				} else {
+					alert("이미지 파일 아님!");
+					dropArea.classList.remove("active");
+                    dragText.textContent = "파일을 넣어주세염!";
+				}
+			}
+		</script>
+	</body>
+</html>
